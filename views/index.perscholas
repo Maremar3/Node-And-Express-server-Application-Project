@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>#title#</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+
+  <body>
+    <div id="app">
+      <h1>#title#</h1>
+      <div>#content#</div>
+       
+       <form> <label for='review'>Review:</label><input type='text' id='review' name='review' ><br> <label for='Comment'>Comment:</label><br><input type='text' id='Comment' name='Comment'><br><br> <input type='submit' value='Submit'> </form>
+
+   
+  
+    
+
+    </div>
+  </body>
+</html>
