@@ -1,6 +1,7 @@
 const express= require('express');
+const bodyParser = require("body-parser");
 const usersproduct = require('./data/usersproduct');
-
+const customerposts = require('./data/customerposts');
 const app=express();
 // app.get('/',(req,res)=>{
 //     res.send('hello world !!');
@@ -15,10 +16,12 @@ app.get('/makeup/usersproduct/:id',(req,res, next) => {
     else next();
   });
 
-app.get('/makeup/userspoduct/:userId', (req, res) => {
-    const userId = req.params.userId;
+app.get('/makeup/customerposts/:id', (req, res,next) => {
+  const user = customerposts.find((uu) => uu.id == req.params.id);
+    if (user) res.json(user);
+    else next();
     // Use userId as needed
-})
+});
 
 //renering view**********************************///
 //app.get('/',(req,res)=>{
@@ -40,6 +43,7 @@ app.engine("perscholas", (filePath, options, callback) => {
       .toString()
       .replaceAll("#title#", `${options.title}`)
       .replace("#content#", `${options.content}`);
+    
     return callback(null, rendered);
   });
 });
@@ -52,9 +56,7 @@ app.get("/", (req, res) => {
     title: "Welcome To Our ULTA Makeup Store",
     content:
       "You can put your review \ <a href='/'>insert your Comment and Review</a>, \ ",
-      form:"your form is here \ <form> <label for='review'>Review:</label><input type='text' id='review' name='review' ><br> <label for='Comment'>Comment:</label><br><input type='text' id='Comment' name='Comment'><br><br> <input type='submit' value='Submit'> </form> \ "
-            
-      ,
+     
   };
 ////https://pugjs.org/api/getting-started.html
   res.render("index", options);
