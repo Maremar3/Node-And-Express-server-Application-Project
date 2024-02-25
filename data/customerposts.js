@@ -6,11 +6,9 @@
 
 const posts = [
     {
-      id: 1,
-      userId: 1,
-      title: 'est et quae odit qui non',
-      content:
-        'similique esse doloribus nihil accusamus\nomnis dolorem fuga consequuntur reprehenderit fugit recusandae temporibus\nperspiciatis cum ut laudantium\nomnis aut molestiae vel vero',
+      id: 1,//customer id primery key
+      userId: 1,// product Id from userproduct ,relational Key
+      customername:"Nana"
     },
     {
       id: 2,

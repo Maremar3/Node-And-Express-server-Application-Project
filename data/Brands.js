@@ -2,7 +2,7 @@
 //here we have our brands (product's company name)
 const Brands = [
     {
-      brandid: 1,
+      brandid: 1,//primary key
      
       Brandname: "XYN",
      
