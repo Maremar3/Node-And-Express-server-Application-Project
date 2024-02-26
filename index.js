@@ -2,14 +2,13 @@ const express= require('express');
 const bodyParser = require("body-parser");
 const usersproduct = require('./data/usersproduct');
 const customerposts = require('./data/customerposts');
+const Brands = require('./data/Brands')
 const app=express();
 // app.get('/',(req,res)=>{
 //     res.send('hello world !!');
 // });
-app.get('/makeup',(req,res)=>{
-res.send([1, 2, 3]);
-});
-//  /api/makeup/1
+
+//  /makeup/usersproduct/1
 app.get('/makeup/usersproduct/:id',(req,res, next) => {
     const user = usersproduct.find((u) => u.id == req.params.id);
     if (user) res.json(user);
