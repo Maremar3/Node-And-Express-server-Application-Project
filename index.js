@@ -1,12 +1,17 @@
 const express= require('express');
 const bodyParser = require("body-parser");
+
 const usersproduct = require('./data/usersproduct');
 const customerposts = require('./data/customerposts');
 const Brands = require('./data/Brands')
+
+const error = require("./utilities/errors");
 const app=express();
-// app.get('/',(req,res)=>{
-//     res.send('hello world !!');
-// });
+// Parsing Middleware
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json({ extended: true }));
+
+
 
 //  /makeup/usersproduct/1
 app.get('/makeup/usersproduct/:id',(req,res, next) => {
@@ -25,7 +30,7 @@ app.get('/makeup/customerposts/:id', (req, res,next) => {
 //renering view**********************************///
 //app.get('/',(req,res)=>{
  
-   
+ //middleware  
 app.use(express.static("./styles"));
 
 // require the filesystem module
@@ -64,9 +69,19 @@ app.get("/", (req, res) => {
  // });
 ///////************************************** */
 
+// 404 Middleware
+app.use((req, res, next) => {
+  next(error(404, "Resource Not Found"));
+});
+// Error-handling middleware.
 
-//port
+app.use((err, req, res, next) => {
+  res.status(err.status || 500);
+  res.json({ error: err.message });
+});
+
+//listening to the port
 const port= process.env.port|| 3000;
-app.listen(3000,()=>console.log(`Listening on Port ${port}..`));
+app.listen(port,()=>console.log(`Listening on Port ${port}..`));
 
 
